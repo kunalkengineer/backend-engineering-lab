@@ -1,6 +1,7 @@
 package com.kunal.backendlab.springcore;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,13 @@ public class SpringCoreModuleApplication implements CommandLineRunner {
 @Autowired
 PaymentService paymentService;
 
+//@Autowired
+INotificationService notificationService;
+    SpringCoreModuleApplication(@Qualifier("smsNotif") INotificationService notificationService){
+        this.notificationService = notificationService;
+    }
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCoreModuleApplication.class, args);
 	}
@@ -17,5 +25,6 @@ PaymentService paymentService;
     @Override
     public void run(String... args) throws Exception {
         paymentService.pay();
+        notificationService.send("hello");
     }
 }
