@@ -1,5 +1,6 @@
 package com.kunal.backendlab.springcore;
 
+import com.kunal.backendlab.springcore.hw.Cakebaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -10,6 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringCoreModuleApplication implements CommandLineRunner {
 @Autowired
 PaymentService paymentService;
+
+@Autowired
+    Cakebaker cakebaker;
 
 //@Autowired
 INotificationService notificationService;
@@ -26,5 +30,6 @@ INotificationService notificationService;
     public void run(String... args) throws Exception {
         paymentService.pay();
         notificationService.send("hello");
+        cakebaker.bakeCake();
     }
 }
